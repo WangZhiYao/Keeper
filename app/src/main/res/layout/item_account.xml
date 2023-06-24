@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+        <variable
+            name="account"
+            type="com.yizhenwind.keeper.data.model.Account" />
+
+        <variable
+            name="onEditClickListener"
+            type="kotlin.jvm.functions.Function1" />
+
+        <variable
+            name="onDeleteClickListener"
+            type="kotlin.jvm.functions.Function1" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Theme.Keeper.Card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentPadding="@dimen/content_padding">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_account"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_outline_person_24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="?attr/colorControlNormal" />
+
+            <TextView
+                android:id="@+id/tv_account_username"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:text="@{account.username}"
+                android:textColor="@color/color_text_primary"
+                app:layout_constraintBottom_toBottomOf="@id/iv_account"
+                app:layout_constraintEnd_toStartOf="@id/ib_account_edit"
+                app:layout_constraintStart_toEndOf="@id/iv_account"
+                app:layout_constraintTop_toTopOf="@id/iv_account"
+                tools:text="339@339.im" />
+
+
+            <ImageButton
+                android:id="@+id/ib_account_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:onClickListener="@{(view) -> onDeleteClickListener.invoke(account)}"
+                android:src="@drawable/ic_outline_delete_24dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_account"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/iv_account"
+                app:tint="?attr/colorControlNormal" />
+
+            <ImageButton
+                android:id="@+id/ib_account_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:onClickListener="@{(view) -> onEditClickListener.invoke(account)}"
+                android:src="@drawable/ic_outline_edit_24dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_account"
+                app:layout_constraintEnd_toStartOf="@id/ib_account_delete"
+                app:layout_constraintTop_toTopOf="@id/iv_account"
+                app:tint="?attr/colorControlNormal" />
+
+            <ImageView
+                android:id="@+id/iv_password"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_outline_password_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_account"
+                app:tint="?attr/colorControlNormal" />
+
+            <TextView
+                android:id="@+id/tv_account_password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{account.password}"
+                android:textColor="@color/color_text_primary"
+                app:layout_constraintBottom_toBottomOf="@id/iv_password"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_password"
+                app:layout_constraintTop_toTopOf="@id/iv_password"
+                tools:text="123456" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

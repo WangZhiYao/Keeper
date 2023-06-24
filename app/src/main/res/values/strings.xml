@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">Keeper</string>
+
+    <!-- Label -->
+    <string name="label_account_list">账号列表</string>
+    <string name="label_create_character">创建角色</string>
+    <string name="label_create_account">创建账号</string>
+    <string name="label_edit_account">编辑账号</string>
+    <string name="label_edit_character">编辑角色</string>
+
+    <!-- Character -->
+    <string name="character_select_account">账号</string>
+    <string name="character_select_zone">大区</string>
+    <string name="character_select_server">主服务器</string>
+    <string name="character_security_lock">安全锁</string>
+    <string name="character_name">角色名</string>
+    <string name="character_select_sect">门派</string>
+    <string name="character_select_internal">心法</string>
+    <string name="character_remark">备注</string>
+    <string name="character_delete_success">删除角色成功</string>
+
+    <!-- Account -->
+    <string name="account_username">账号</string>
+    <string name="account_password">密码</string>
+    <string name="account_delete_success">删除账号成功</string>
+
+    <!-- Menu -->
+    <string name="action_account_list">账号列表</string>
+    <string name="action_delete_character">删除角色</string>
+
+    <!-- Common -->
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="delete">删除</string>
+
+    <!-- DeleteAccountDialog -->
+    <string name="dialog_delete_account_title">删除账号</string>
+    <string name="dialog_delete_account_message">删除该账号将会连带删除该账号下的所有角色，是否继续</string>
+
+    <!-- DeleteCharacterDialog -->
+    <string name="dialog_delete_character_title">删除角色</string>
+    <string name="dialog_delete_character_message">是否删除角色</string>
+
+    <!-- Error -->
+    <string name="error_account_empty_username">请输入用户名</string>
+    <string name="error_account_empty_password">请输入密码</string>
+    <string name="error_account_create_failed">创建账号失败</string>
+    <string name="error_account_update_failed">更新账号失败</string>
+    <string name="error_account_delete_failed">删除账号失败</string>
+
+    <string name="error_character_empty_account_message">当前还没有账号，请先创建账号再添加角色</string>
+    <string name="error_character_account_unselected">请选择账号</string>
+    <string name="error_character_empty_name">请输入角色名</string>
+    <string name="error_character_create_failed">创建角色失败</string>
+    <string name="error_character_update_failed">更新角色失败</string>
+    <string name="error_character_delete_failed">删除角色失败</string>
+
+</resources>

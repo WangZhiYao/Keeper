@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.yizhenwind.keeper.ui.character.create.CreateCharacterViewModel" />
+
+        <variable
+            name="viewState"
+            type="com.yizhenwind.keeper.ui.character.create.CreateCharacterViewState" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_create_character_account"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:hint="@string/character_select_account"
+                app:error="@{viewState.accountError}"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:startIconDrawable="@drawable/ic_outline_person_24dp">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/actv_create_character_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:onItemClick="@{(parent, view, position, id) -> viewModel.onAccountSelected(position)}"
+                    android:singleLineItem="@{viewState.accountUsernameList}"
+                    android:textNoFiltering="@{viewState.account.username}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_create_character_zone"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="8dp"
+                android:hint="@string/character_select_zone"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toStartOf="@id/til_create_character_server"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/til_create_character_account"
+                app:layout_constraintWidth_percent="0.4">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/actv_create_character_zone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:onItemClick="@{(parent, view, position, id) -> viewModel.onZoneSelected(position)}"
+                    android:singleLineItem="@{viewState.zoneNameList}"
+                    android:textNoFiltering="@{viewState.zone.name}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_create_character_server"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:hint="@string/character_select_server"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/til_create_character_zone"
+                app:layout_constraintTop_toBottomOf="@id/til_create_character_account">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/actv_create_character_server"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:onItemClick="@{(parent, view, position, id) -> viewModel.onServerSelected(position)}"
+                    android:singleLineItem="@{viewState.serverNameList}"
+                    android:textNoFiltering="@{viewState.server.name}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_create_character_name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:hint="@string/character_name"
+                app:endIconMode="clear_text"
+                app:error="@{viewState.nameError}"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/til_create_character_zone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tiet_create_character_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:afterTextChanged="@{(name) -> viewModel.onNameChanged(name)}"
+                    android:imeOptions="actionNext"
+                    android:maxLines="1"
+                    android:text="@{viewState.name}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_create_character_sect"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="8dp"
+                android:hint="@string/character_select_sect"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toStartOf="@id/til_create_character_internal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/til_create_character_name">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/actv_create_character_sect"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:onItemClick="@{(parent, view, position, id) -> viewModel.onSectSelected(position)}"
+                    android:singleLineItem="@{viewState.sectNameList}"
+                    android:textNoFiltering="@{viewState.sect.name}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_create_character_internal"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:hint="@string/character_select_internal"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/til_create_character_sect"
+                app:layout_constraintTop_toBottomOf="@id/til_create_character_name">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/actv_create_character_internal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:onItemClick="@{(parent, view, position, id) -> viewModel.onInternalSelected(position)}"
+                    android:singleLineItem="@{viewState.internalNameList}"
+                    android:textNoFiltering="@{viewState.internal.name}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_create_character_security_lock"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:hint="@string/character_security_lock"
+                app:counterEnabled="true"
+                app:counterMaxLength="6"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/til_create_character_sect"
+                app:startIconDrawable="@drawable/ic_outline_lock_24dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tiet_create_character_security_lock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:afterTextChanged="@{(securityLock) -> viewModel.onSecurityLockChanged(securityLock)}"
+                    android:imeOptions="actionNext"
+                    android:maxLength="6"
+                    android:maxLines="1"
+                    android:text="@{viewState.securityLock}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_create_character_remark"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:hint="@string/character_remark"
+                app:endIconMode="clear_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/til_create_character_security_lock">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tiet_create_character_remark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:afterTextChanged="@{(remark) -> viewModel.onRemarkChanged(remark)}"
+                    android:gravity="start|top"
+                    android:inputType="textMultiLine"
+                    android:maxLines="5"
+                    android:minLines="5"
+                    android:text="@{viewState.remark}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:clickable="true"
+            android:onClick="@{(view) -> viewModel.attemptCreateCharacter()}"
+            app:srcCompat="@drawable/ic_outline_check_24dp" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/nav_character_list">
+
+    <fragment
+        android:id="@+id/nav_character_list"
+        android:name="com.yizhenwind.keeper.ui.character.CharacterListFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_character_list">
+
+        <action
+            android:id="@+id/action_create_character"
+            app:destination="@id/nav_create_character"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_edit_character"
+            app:destination="@id/nav_edit_character"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_account_list"
+        android:name="com.yizhenwind.keeper.ui.account.AccountListFragment"
+        android:label="@string/label_account_list"
+        tools:layout="@layout/fragment_account_list">
+
+        <action
+            android:id="@+id/action_edit_account"
+            app:destination="@id/nav_edit_account"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_create_character"
+        android:name="com.yizhenwind.keeper.ui.character.create.CreateCharacterFragment"
+        android:label="@string/label_create_character"
+        tools:layout="@layout/fragment_create_character" />
+
+    <fragment
+        android:id="@+id/nav_create_account"
+        android:name="com.yizhenwind.keeper.ui.account.create.CreateAccountFragment"
+        android:label="@string/label_create_account"
+        tools:layout="@layout/fragment_create_account" />
+
+    <fragment
+        android:id="@+id/nav_edit_account"
+        android:name="com.yizhenwind.keeper.ui.account.edit.EditAccountFragment"
+        android:label="@string/label_edit_account"
+        tools:layout="@layout/fragment_edit_account">
+
+        <argument
+            android:name="accountId"
+            android:defaultValue="0L"
+            app:argType="long"
+            app:nullable="false" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_edit_character"
+        android:name="com.yizhenwind.keeper.ui.character.edit.EditCharacterFragment"
+        android:label="@string/label_edit_character"
+        tools:layout="@layout/fragment_edit_character">
+
+        <argument
+            android:name="characterId"
+            android:defaultValue="0L"
+            app:argType="long"
+            app:nullable="false" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_account_list"
+        app:destination="@id/nav_account_list"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right" />
+
+    <action
+        android:id="@+id/action_create_account"
+        app:destination="@id/nav_create_account"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right" />
+
+</navigation>

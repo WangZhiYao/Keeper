@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="character"
+            type="com.yizhenwind.keeper.data.model.Character" />
+
+        <variable
+            name="onEditClickListener"
+            type="kotlin.jvm.functions.Function1" />
+
+        <variable
+            name="onDeleteClickListener"
+            type="kotlin.jvm.functions.Function1" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Theme.Keeper.Card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentPadding="@dimen/content_padding">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_character_zone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{character.zone.name}"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="电信五区" />
+
+            <TextView
+                android:id="@+id/tv_character_server"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{character.server.name}"
+                android:textSize="12sp"
+                app:layout_constraintBaseline_toBaselineOf="@id/tv_character_zone"
+                app:layout_constraintStart_toEndOf="@id/tv_character_zone"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="唯我独尊" />
+
+            <ImageButton
+                android:id="@+id/ib_character_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:onClickListener="@{(view) -> onDeleteClickListener.invoke(character)}"
+                android:src="@drawable/ic_outline_delete_24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="?attr/colorControlNormal" />
+
+            <ImageButton
+                android:id="@+id/ib_character_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/activity_vertical_margin"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:onClickListener="@{(view) -> onEditClickListener.invoke(character)}"
+                android:src="@drawable/ic_outline_edit_24dp"
+                app:layout_constraintEnd_toStartOf="@id/ib_character_delete"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="?attr/colorControlNormal" />
+
+            <TextView
+                android:id="@+id/tv_character_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{character.name}"
+                android:textColor="@color/color_text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_character_zone"
+                tools:text="宇文长卿" />
+
+            <TextView
+                android:id="@+id/tv_character_sect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{character.sect.name}"
+                android:textColor="@color/color_text_secondary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_character_name"
+                tools:text="苍云" />
+
+            <TextView
+                android:id="@+id/tv_character_internal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{character.internal.name}"
+                android:textColor="@color/color_text_secondary"
+                app:layout_constraintBaseline_toBaselineOf="@id/tv_character_sect"
+                app:layout_constraintStart_toEndOf="@id/tv_character_sect"
+                tools:text="分山劲" />
+
+            <ImageView
+                android:id="@+id/iv_character_account"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_outline_person_24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_character_sect"
+                app:tint="?attr/colorControlNormal" />
+
+            <TextView
+                android:id="@+id/tv_character_account"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:text="@{character.account.username}"
+                android:textColor="@color/color_text_secondary"
+                app:layout_constraintBottom_toBottomOf="@id/iv_character_account"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_character_account"
+                app:layout_constraintTop_toTopOf="@id/iv_character_account"
+                tools:text="339@339.im" />
+
+            <ImageView
+                android:id="@+id/iv_character_password"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_outline_password_24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_character_account"
+                app:tint="?attr/colorControlNormal" />
+
+            <TextView
+                android:id="@+id/tv_character_password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:gravity="center_vertical"
+                android:text="@{character.account.password}"
+                android:textColor="@color/color_text_secondary"
+                app:layout_constraintBottom_toBottomOf="@id/iv_character_password"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_character_password"
+                app:layout_constraintTop_toTopOf="@id/iv_character_password"
+                tools:text="12345678" />
+
+            <ImageView
+                android:id="@+id/iv_character_security_lock"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_outline_lock_24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_character_password"
+                app:tint="?attr/colorControlNormal" />
+
+            <TextView
+                android:id="@+id/tv_character_security_lock"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:gravity="center_vertical"
+                android:text="@{character.securityLock}"
+                android:textColor="@color/color_text_secondary"
+                app:layout_constraintBottom_toBottomOf="@id/iv_character_security_lock"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_character_security_lock"
+                app:layout_constraintTop_toTopOf="@id/iv_character_security_lock"
+                tools:text="123456" />
+
+            <TextView
+                android:id="@+id/tv_character_remark"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:text="@{character.remark}"
+                android:textColor="@color/color_text_secondary"
+                android:visible="@{!TextUtils.isEmpty(character.remark)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_character_security_lock"
+                tools:text="12345678" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

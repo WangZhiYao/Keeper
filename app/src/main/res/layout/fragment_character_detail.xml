@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="character"
+            type="com.yizhenwind.keeper.data.model.Character" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_character_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{character.name}"
+                android:textColor="@color/color_text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="宇文长卿" />
+
+            <TextView
+                android:id="@+id/tv_character_sect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{character.sect.name}"
+                android:textColor="@color/color_text_primary"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_character_name"
+                tools:text="苍云" />
+
+            <TextView
+                android:id="@+id/tv_character_zone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="@{character.zone.name}"
+                android:textSize="12sp"
+                app:layout_constraintBaseline_toBaselineOf="@id/tv_character_sect"
+                app:layout_constraintEnd_toStartOf="@id/tv_character_server"
+                tools:text="电信五区" />
+
+            <TextView
+                android:id="@+id/tv_character_server"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:text="@{character.server.name}"
+                android:textSize="12sp"
+                app:layout_constraintBaseline_toBaselineOf="@id/tv_character_sect"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="唯我独尊" />
+
+            <TextView
+                android:id="@+id/tv_character_account"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:text="@{character.account.username}"
+                android:textColor="@color/color_text_secondary"
+                app:drawableStartCompat="@drawable/ic_outline_person_24dp"
+                app:drawableTint="?attr/colorControlNormal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_character_sect"
+                tools:text="339@339.im" />
+
+            <TextView
+                android:id="@+id/tv_character_password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:text="@{character.account.password}"
+                android:textColor="@color/color_text_primary"
+                app:drawableStartCompat="@drawable/ic_outline_password_24dp"
+                app:drawableTint="?attr/colorControlNormal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_character_account"
+                tools:text="12345678" />
+
+            <TextView
+                android:id="@+id/tv_character_security_lock"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:text="@{character.securityLock}"
+                android:textColor="@color/color_text_primary"
+                app:drawableStartCompat="@drawable/ic_outline_lock_24dp"
+                app:drawableTint="?attr/colorControlNormal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_character_password"
+                tools:text="123456" />
+
+            <TextView
+                android:id="@+id/tv_character_remark"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:gravity="center_vertical"
+                android:text="@{character.remark}"
+                android:textColor="@color/color_text_primary"
+                android:visible="@{!TextUtils.isEmpty(character.remark)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_character_security_lock"
+                tools:text="12345678" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:text="@{character.account.username}"
+                android:textColor="@color/color_text_primary"
+                app:drawableStartCompat="@drawable/ic_outline_person_24dp"
+                app:drawableTint="?attr/colorControlNormal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="339@339.im" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:text="@{character.account.password}"
+                android:textColor="@color/color_text_primary"
+                app:drawableStartCompat="@drawable/ic_outline_password_24dp"
+                app:drawableTint="?attr/colorControlNormal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="12345678" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:text="@{character.zone.name}"
+                android:textColor="@color/color_text_primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="电信五区" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:text="@{character.server.name}"
+                android:textColor="@color/color_text_primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="唯我独尊" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:text="@{character.name}"
+                android:textColor="@color/color_text_primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="宇文长卿" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:text="@{character.sect.name}"
+                android:textColor="@color/color_text_primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="宇文长卿" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:text="@{character.internal.name}"
+                android:textColor="@color/color_text_primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="宇文长卿" />
+
+        </LinearLayout>-->
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>
