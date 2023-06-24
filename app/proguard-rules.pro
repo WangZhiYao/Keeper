@@ -19,3 +19,18 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Keep all data binding classes
+-keep class androidx.databinding.** { *; }
+
+# Keep all generated BR classes
+-keep class **.BR { *; }
+
+-keep class * extends androidx.databinding.ViewDataBinding {
+    public static ** inflate(android.view.LayoutInflater);
+}
+
+# Keep all methods in DataBindingLazy
+-keepclassmembers class com.yizhenwind.keeper.common.delegate.DataBindingLazy {
+    *;
+}
