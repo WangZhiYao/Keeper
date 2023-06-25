@@ -20,6 +20,7 @@ interface CharacterDao : IDao<CharacterEntity> {
     @Query("SELECT * FROM character ORDER BY create_time DESC")
     fun observeCharacterPagingList(): PagingSource<Int, CharacterWithAccount>
 
+    @Transaction
     @Query("SELECT * FROM character WHERE id = :id LIMIT 1")
     suspend fun getCharacterById(id: Long): List<CharacterWithAccount>
 
