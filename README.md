@@ -4,7 +4,7 @@ An app for keeping JX3 game accounts, where users can track their own accounts a
 
 ## Todo
 
-- [ ] Search by character name, account username
+- [x] Search by character name, account username
 - [ ] Import from excel / Export to excel
 - [ ] Update Zone / Server / Sect / Internal
 
