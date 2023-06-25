@@ -2,6 +2,7 @@ package com.yizhenwind.keeper.ui.character
 
 import android.app.Application
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
 import com.yizhenwind.keeper.R
@@ -35,6 +36,10 @@ class CharacterListViewModel @Inject constructor(
         container(CharacterListViewState())
 
     init {
+        observeCharacterPagingList()
+    }
+
+    fun observeCharacterPagingList() {
         intent {
             characterRepository.observeCharacterPagingList()
                 .cachedIn(viewModelScope)
@@ -65,6 +70,24 @@ class CharacterListViewModel @Inject constructor(
                 }
                 .collect {
                     postSideEffect(ShowSnack(getString(R.string.character_delete_success)))
+                }
+        }
+    }
+
+    fun searchCharacter(text: String) {
+        intent {
+            characterRepository.searchCharacter(text)
+                .map { characterList ->
+                    PagingData.from(characterList.map { character ->
+                        character.account.run {
+                            character.copy(account = copy(password = AESUtil.decryptData(password)))
+                        }
+                    })
+                }
+                .collect { pagingData ->
+                    reduce {
+                        state.copy(characterList = pagingData)
+                    }
                 }
         }
     }

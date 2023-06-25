@@ -27,6 +27,7 @@
     <!-- Menu -->
     <string name="action_account_list">账号列表</string>
     <string name="action_delete_character">删除角色</string>
+    <string name="action_search">搜索</string>
 
     <!-- Common -->
     <string name="ok">确定</string>

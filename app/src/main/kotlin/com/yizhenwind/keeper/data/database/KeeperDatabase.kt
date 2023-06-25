@@ -18,7 +18,7 @@ import com.yizhenwind.keeper.data.database.entity.CharacterEntity
         AccountEntity::class,
         CharacterEntity::class
     ],
-    version = 1,
+    version = KeeperDatabase.VERSION,
     exportSchema = false
 )
 abstract class KeeperDatabase : RoomDatabase() {
@@ -26,5 +26,11 @@ abstract class KeeperDatabase : RoomDatabase() {
     abstract fun accountDao(): AccountDao
 
     abstract fun characterDao(): CharacterDao
+
+    companion object {
+
+        const val VERSION = 1
+
+    }
 
 }

@@ -6,6 +6,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 import com.yizhenwind.keeper.data.database.entity.CharacterEntity
 import com.yizhenwind.keeper.data.database.relation.CharacterWithAccount
+import kotlinx.coroutines.flow.Flow
 
 /**
  *
@@ -24,4 +25,7 @@ interface CharacterDao : IDao<CharacterEntity> {
     @Query("SELECT * FROM character WHERE id = :id LIMIT 1")
     suspend fun getCharacterById(id: Long): List<CharacterWithAccount>
 
+    @Transaction
+    @Query("SELECT * FROM character INNER JOIN account ON character.account_id = account.id WHERE zone LIKE '%' || :text || '%' OR server LIKE '%' || :text || '%' OR name LIKE '%' || :text || '%' OR sect LIKE '%' || :text || '%' OR internal LIKE '%' || :text || '%' OR remark LIKE '%' || :text || '%' OR account.username LIKE '%' || :text || '%'")
+    fun searchCharacterList(text: String): Flow<List<CharacterWithAccount>>
 }
