@@ -25,17 +25,13 @@ object AESUtil {
     private const val KEY_ALIAS = "Keeper"
     private const val IV = "qZ8G5vfVfmMfYvp4"
 
+    private val keyStore: KeyStore = KeyStore.getInstance(KEYSTORE_PROVIDER)
+        .apply { load(null) }
+
     init {
-        val keyStore = getKeyStore()
         if (!keyStore.containsAlias(KEY_ALIAS)) {
             generateKeyStore()
         }
-    }
-
-    private fun getKeyStore(): KeyStore {
-        val keyStore = KeyStore.getInstance(KEYSTORE_PROVIDER)
-        keyStore.load(null)
-        return keyStore
     }
 
     private fun generateKeyStore() {
@@ -53,29 +49,27 @@ object AESUtil {
     }
 
     private fun getSecretKey(): SecretKey {
-        val keyStore = getKeyStore()
         return keyStore.getKey(KEY_ALIAS, null) as? SecretKey
             ?: throw IllegalStateException("No key found under alias: $KEY_ALIAS")
     }
 
     @JvmStatic
-    fun encryptData(data: String): String {
+    fun encryptData(plaintext: String): String {
         val cipher = Cipher.getInstance(TRANSFORMATION)
         cipher.init(Cipher.ENCRYPT_MODE, getSecretKey(), IvParameterSpec(IV.encodeToByteArray()))
-        val encryptedBytes = cipher.doFinal(data.encodeToByteArray())
-        return Base64.encodeToString(encryptedBytes, Base64.DEFAULT)
+        val encryptedBytes = cipher.doFinal(plaintext.encodeToByteArray())
+        return Base64.encodeToString(encryptedBytes, Base64.NO_WRAP)
     }
 
     @JvmStatic
-    fun decryptData(encryptedData: String): String {
+    fun decryptData(ciphertext: String): String {
         val cipher = Cipher.getInstance(TRANSFORMATION)
         cipher.init(Cipher.DECRYPT_MODE, getSecretKey(), IvParameterSpec(IV.encodeToByteArray()))
-        val decryptedBytes = cipher.doFinal(Base64.decode(encryptedData, Base64.DEFAULT))
+        val decryptedBytes = cipher.doFinal(Base64.decode(ciphertext, Base64.NO_WRAP))
         return String(decryptedBytes, Charsets.UTF_8)
     }
 
     fun deleteKeyPair(alias: String) {
-        val keyStore = getKeyStore()
         keyStore.deleteEntry(alias)
     }
 }
