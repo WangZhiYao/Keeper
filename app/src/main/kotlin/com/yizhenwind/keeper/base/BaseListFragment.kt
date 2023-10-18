@@ -17,22 +17,14 @@ abstract class BaseListFragment<VM : BaseViewModel<STATE, SIDE_EFFECT>, DB : Vie
 
     abstract val rvList: RecyclerView
 
-    abstract val layoutManager: RecyclerView.LayoutManager
-
     abstract val adapter: RecyclerView.Adapter<*>
 
     override fun initView() {
-        rvList.apply {
-            layoutManager = this@BaseListFragment.layoutManager
-            adapter = this@BaseListFragment.adapter
-        }
+        rvList.adapter = adapter
     }
 
     override fun onDestroyView() {
-        rvList.apply {
-            layoutManager = null
-            adapter = null
-        }
+        rvList.adapter = null
         super.onDestroyView()
     }
 }

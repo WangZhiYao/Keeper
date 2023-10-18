@@ -69,7 +69,9 @@ class CharacterRepository @Inject constructor(
             .flowOn(ioDispatcher)
 
     fun searchCharacter(text: String): Flow<List<Character>> =
-        characterDao.searchCharacterList(text)
+        flow {
+            emit(characterDao.searchCharacterList(text))
+        }
             .map { characterWithAccountList ->
                 characterWithAccountList.map { characterWithAccount ->
                     characterWithAccountMapper.map(

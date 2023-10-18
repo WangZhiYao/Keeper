@@ -20,7 +20,7 @@ data class AccountEntity(
      * 主键ID
      */
     @PrimaryKey(autoGenerate = true)
-    var id: Long,
+    var id: Long = 0,
 
     /**
      * 账号

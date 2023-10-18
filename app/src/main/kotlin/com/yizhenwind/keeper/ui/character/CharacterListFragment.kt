@@ -8,7 +8,6 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.PagingData
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.yizhenwind.keeper.R
 import com.yizhenwind.keeper.base.BaseListFragment
@@ -35,10 +34,6 @@ class CharacterListFragment :
 
     override val rvList: RecyclerView
         get() = binding.rvCharacterList
-
-    override val layoutManager: RecyclerView.LayoutManager by lazy {
-        LinearLayoutManager(requireContext())
-    }
 
     override val adapter: CharacterAdapter = CharacterAdapter()
 

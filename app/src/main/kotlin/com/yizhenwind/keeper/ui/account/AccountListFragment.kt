@@ -30,10 +30,6 @@ class AccountListFragment :
     override val rvList: RecyclerView
         get() = binding.rvAccountList
 
-    override val layoutManager: RecyclerView.LayoutManager by lazy {
-        LinearLayoutManager(requireContext())
-    }
-
     override val adapter: AccountAdapter = AccountAdapter()
 
     override fun initView() {
