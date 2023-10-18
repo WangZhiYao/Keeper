@@ -15,12 +15,12 @@ plugins {
 
 android {
     namespace = "com.yizhenwind.keeper"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.yizhenwind.keeper"
         minSdk = 26
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 2
         versionName = "1.1"
 
@@ -49,6 +49,10 @@ android {
 
     buildFeatures {
         dataBinding = true
+    }
+
+    ksp {
+        arg("room.generateKotlin", "true")
     }
 }
 
