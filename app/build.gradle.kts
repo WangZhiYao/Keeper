@@ -6,6 +6,7 @@ import java.util.Date
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.sonarqube)
     id(libs.plugins.kotlin.kapt.get().pluginId)
     id(libs.plugins.kotlin.parcelize.get().pluginId)
     id(libs.plugins.ksp.get().pluginId)
@@ -38,6 +39,17 @@ android {
         }
     }
 
+    applicationVariants.all {
+        outputs
+            .map { it as BaseVariantOutputImpl }
+            .forEach { output ->
+                val dateFormat = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.CHINA)
+                val outputFileName =
+                    "Keeper-$versionName-$name-${dateFormat.format(Date())}.${output.outputFile.extension}"
+                output.outputFileName = outputFileName
+            }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -53,6 +65,13 @@ android {
 
     ksp {
         arg("room.generateKotlin", "true")
+    }
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "WangZhiYao_Keeper_AYvlfINHoN-SazKCPsMv")
+        property("sonar.projectName", "Keeper")
     }
 }
 
