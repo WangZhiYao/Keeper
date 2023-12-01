@@ -2,7 +2,7 @@
 android = "8.1.4"
 kotlin = "1.9.21"
 sonarqube = "4.4.1.3373"
-hilt = "2.48.1"
+hilt = "2.49"
 ksp = "1.9.10-1.0.13"
 kotlinx-coroutines = "1.7.3"
 junit = "4.13.2"
