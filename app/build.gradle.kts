@@ -72,6 +72,7 @@ sonar {
     properties {
         property("sonar.projectKey", "WangZhiYao_Keeper_AYvlfINHoN-SazKCPsMv")
         property("sonar.projectName", "Keeper")
+        property("sonar.projectVersion", "${project.android.defaultConfig.versionName}")
     }
 }
 
