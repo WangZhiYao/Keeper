@@ -1,6 +1,6 @@
 [versions]
 android = "8.2.0"
-kotlin = "1.9.21"
+kotlin = "1.9.22"
 sonarqube = "4.4.1.3373"
 hilt = "2.49"
 ksp = "1.9.21-1.0.16"
