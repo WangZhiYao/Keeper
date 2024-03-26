@@ -1,7 +1,7 @@
 [versions]
 android = "8.3.1"
 kotlin = "1.9.23"
-sonarqube = "4.4.1.3373"
+sonarqube = "5.0.0.4638"
 hilt = "2.51"
 ksp = "1.9.23-1.0.19"
 kotlinx-coroutines = "1.8.0"
