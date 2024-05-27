@@ -36,4 +36,4 @@ jobs:
             -Dsonar.projectKey=Keeper
             -Dsonar.projectName=Keeper
             -Dsonar.sources=main/kotlin
-            -Dsonar.tests=test/kotlin
+            -Dsonar.tests=androidTest/kotlin,test/kotlin
