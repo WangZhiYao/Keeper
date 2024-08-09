@@ -1,5 +1,5 @@
 [versions]
-android = "8.5.0"
+android = "8.5.2"
 kotlin = "2.0.0"
 sonarqube = "5.1.0.4882"
 hilt = "2.51.1"
